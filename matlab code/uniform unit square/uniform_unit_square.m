@@ -1,5 +1,8 @@
 function results = uniform_unit_square(ns)
-% Assumes ns is a row vector of n values
+% For each n in array ns, randomly generates n points in the unit square
+% and run k-means for various values of k, and for 10 trials. Then plots
+% the results over all runs as X vs y, k vs iters, k vs err, iters vs err, 
+% n/k vs iters, n/k vs err, k/n vs iters and k/n vs err.
 
 num_ns = size(ns, 2);
 results = cell(num_ns, 1);

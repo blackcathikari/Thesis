@@ -17,3 +17,14 @@
 * gen_gauss_sym_sph_2c(mu, s, n) - Generates a mixture distribution of 2 symmetric, spherical Gaussians using the given n, mu and s values and centered at the origin.
 * plot_data_dist(data, num_sets, link, titles, bins, fig_file, fig_names) - more complicated version of the file in 030516
 * test_gauss_sym_sph_2c(n_min, n_max, n_interval, m_vals) - Generates 3 2D mixtures of 2 symmetric, spherical Gaussians centered at the origin for each n_min:n_interval:n_max using the three m_vals values for the mean x and 0 for mean y, runs kmeans on them then plots the data, data boxplots, data histograms, pdist histograms and kmeans error plots for each.
+
+###080516
+
+###090516
+
+###Common Functions
+
+###Datasets
+
+###Uniform Unit Square
+* uniform_unit_square(ns) - For each n in array ns, randomly generates n points in the unit square and run k-means for various values of k, and for 10 trials. Then plots the results over all runs as X vs y, k vs iters, k vs err, iters vs err, n/k vs iters, n/k vs err, k/n vs iters and k/n vs err.
