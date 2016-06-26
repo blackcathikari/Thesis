@@ -1,2 +1,3 @@
 *.fig
-C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\uniform unit square\results\*
+/matlab code/uniform unit square/results
+/matlab code/uniform unit square/*.png
