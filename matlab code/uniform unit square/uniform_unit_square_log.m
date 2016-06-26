@@ -1,8 +1,7 @@
-function results = uniform_unit_square_log(ns)
+function uniform_unit_square_log(ns)
 % Assumes ns is a row vector of n values
 
 num_ns = size(ns, 2);
-results = cell(num_ns, 1);
 trials = 10;
 
 for n=1:num_ns
@@ -34,7 +33,6 @@ for n=1:num_ns
    %disp(X_results)
    stats = [X_results(:, 1)./X_results(:, 2), X_results(:, 2)./X_results(:, 1)];
    %disp(stats)
-   results{n} = [X_results, stats];
    
    figure;
    
@@ -77,9 +75,16 @@ for n=1:num_ns
    semilogx(stats(:, 2), X_results(:, 4), 'b.');
    xlabel('k/n');
    ylabel('err');
+   
+   %Save the data
+   filename = strjoin(strcat('UUSL', {' '}, num2str(ns(n)), {' '}, num2str(now)));
+   save(filename, 'X_results');
+   
+   % Clear most of the variables to free up memory
+   % varlist = {'ks', 'iters', 'digits', 'X', 'num_ks', 'X_results', 'idx', 
+       %'k_idx', 'stats', 'results'};
+   % clear(varlist{:})
+   clear ks iters digits X num_ks X_results idx k_idx stats results;
 end
-
-filename = strjoin(strcat('UUSL', {' '}, num2str(ns), {' '}, num2str(now)));
-save(filename, 'results');
 
 end
