@@ -1,7 +1,7 @@
 function plot_combined_kn_iters(values_to_plot)
 
 % Get filenames 
-allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\uniform unit square\results\');
+allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\uniform unit circle\results\');
 allNames = {allFiles(~[allFiles.isdir]).name};
 allNames = sort(allNames);
 
@@ -18,8 +18,8 @@ figure;
 
 % Iterate through all the files
 for i = 1:size(allNames, 2)
-   temp = strsplit(allNames{i});
-   n = temp(2);
+   temp = strsplit(allNames{i})
+   n = temp(2)
    
    % Check file matches search values
    if(any(values_to_plot == str2num(n{1}))) 
