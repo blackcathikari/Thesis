@@ -1,3 +1,4 @@
 *.fig
 /matlab code/uniform unit square/results
 /matlab code/uniform unit square/*.png
+*.png
