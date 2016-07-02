@@ -17,11 +17,14 @@ for n=1:num_ns
    ks = ks(ks <= ns(n));
    
    % Create points
-   theta = rand(1,n)*(2*pi);
-   r = sqrt(rand(1,n))*radius;
+   radius = 1; % unit circle
+   xc = 0; % centered on origin
+   yc = 0;
+   theta = rand(1,ns(n)).*(2*pi);
+   r = sqrt(rand(1,ns(n)))*radius;
    x = xc + r.*cos(theta);
    y = yc + r.*sin(theta);
-   X = [x, y];
+   X = [x', y'];
    
    % Create data variables
    num_ks = size(ks, 2)*trials;
@@ -41,47 +44,47 @@ for n=1:num_ns
    stats = [X_results(:, 1)./X_results(:, 2), X_results(:, 2)./X_results(:, 1)];
    %disp(stats)
    
-   figure;
-   
-   subplot(2, 4, 1);
-   plot(X(:, 1), X(:, 2), 'b.');
-   xlabel('X');
-   ylabel('y');
-   
-   subplot(2, 4, 2);
-   semilogx(X_results(:, 2), X_results(:, 3), 'b.');
-   xlabel('k');
-   ylabel('iters');
-   
-   subplot(2, 4, 3);
-   semilogx(X_results(:, 2), X_results(:, 4), 'b.');
-   xlabel('k');
-   ylabel('err');
-   
-   subplot(2, 4, 4);
-   semilogx(X_results(:, 3), X_results(:, 4), 'b.');
-   xlabel('iters');
-   ylabel('err');
-   
-   subplot(2, 4, 5);
-   semilogx(stats(:, 1), X_results(:, 3), 'b.');
-   xlabel('n/k');
-   ylabel('iters');
-   
-   subplot(2, 4, 6);
-   semilogx(stats(:, 1), X_results(:, 4), 'b.');
-   xlabel('n/k');
-   ylabel('err');
-   
-   subplot(2, 4, 7);
-   semilogx(stats(:, 2), X_results(:, 3), 'b.');
-   xlabel('k/n');
-   ylabel('iters');
-   
-   subplot(2, 4, 8);
-   semilogx(stats(:, 2), X_results(:, 4), 'b.');
-   xlabel('k/n');
-   ylabel('err');
+%    figure;
+%    
+%    subplot(2, 4, 1);
+%    plot(X(:, 1), X(:, 2), 'b.');
+%    xlabel('X');
+%    ylabel('y');
+%    
+%    subplot(2, 4, 2);
+%    semilogx(X_results(:, 2), X_results(:, 3), 'b.');
+%    xlabel('k');
+%    ylabel('iters');
+%    
+%    subplot(2, 4, 3);
+%    semilogx(X_results(:, 2), X_results(:, 4), 'b.');
+%    xlabel('k');
+%    ylabel('err');
+%    
+%    subplot(2, 4, 4);
+%    semilogx(X_results(:, 3), X_results(:, 4), 'b.');
+%    xlabel('iters');
+%    ylabel('err');
+%    
+%    subplot(2, 4, 5);
+%    semilogx(stats(:, 1), X_results(:, 3), 'b.');
+%    xlabel('n/k');
+%    ylabel('iters');
+%    
+%    subplot(2, 4, 6);
+%    semilogx(stats(:, 1), X_results(:, 4), 'b.');
+%    xlabel('n/k');
+%    ylabel('err');
+%    
+%    subplot(2, 4, 7);
+%    semilogx(stats(:, 2), X_results(:, 3), 'b.');
+%    xlabel('k/n');
+%    ylabel('iters');
+%    
+%    subplot(2, 4, 8);
+%    semilogx(stats(:, 2), X_results(:, 4), 'b.');
+%    xlabel('k/n');
+%    ylabel('err');
    
    %Save the data
    filename = strjoin(strcat('UUSL', {' '}, num2str(ns(n)), {' '}, num2str(now)));
