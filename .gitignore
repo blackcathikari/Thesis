@@ -1,4 +1,5 @@
 *.fig
 /matlab code/uniform unit square/results
-/matlab code/uniform unit square/*.png
+/matlab code/uniform unit circle/results
+/matlab code/gaussian single/results
 *.png
