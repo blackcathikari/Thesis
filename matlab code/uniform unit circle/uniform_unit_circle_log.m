@@ -41,7 +41,7 @@ for n=1:num_ns
    end
    
    %disp(X_results)
-   stats = [X_results(:, 1)./X_results(:, 2), X_results(:, 2)./X_results(:, 1)];
+   %stats = [X_results(:, 1)./X_results(:, 2), X_results(:, 2)./X_results(:, 1)];
    %disp(stats)
    
 %    figure;
