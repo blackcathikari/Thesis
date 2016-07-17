@@ -6,22 +6,19 @@ allNames = {allFiles(~[allFiles.isdir]).name};
 allNames = sort(allNames);
 
 % Get an array of strings of values we're searching for
-n_names = sort(strtrim(cellstr(num2str(ns_to_plot'))'));
-s_names = sort(strtrim(cellstr(num2str(sigs_to_plot'))'));
+n_names = strtrim(cellstr(num2str(ns_to_plot'))');
+s_names = strtrim(cellstr(num2str(sigs_to_plot'))');
 
 %% PLOT BY N VALUE
 
 % Initialise variables to tracks plots, etc.
 sp = zeros(size(ns_to_plot, 2), 1);
-% v_ind = [];
-% count = 0;
-% colour = {[rand; rand; rand]};  
 results = cell(size(ns_to_plot));
-Xs = cell(size(ns_to_plot));
+iters = cell(size(ns_to_plot));
 
 % Iterate through all the files
 for i = 1:size(allNames, 2)
-   temp = strsplit(allNames{i});
+   temp = strsplit(allNames{i})
    n = temp(2);
    
    % Check file matches search values
@@ -34,7 +31,7 @@ for i = 1:size(allNames, 2)
        data = X_results(:, 2)./X_results(:, 1);
        idx = find(ns_to_plot==str2num(n{1}));
        results{idx} = [results{idx}; data];
-       Xs{idx} = [Xs{idx}; X_results(:, 3)];
+       iters{idx} = [iters{idx}; X_results(:, 3)];
    end
 end
 
@@ -43,7 +40,7 @@ figure;
 % Plot data
 for i = 1:size(ns_to_plot, 2)
     colour = [rand; rand; rand];
-    sp(i) = semilogx(results{i}, Xs{i}, '.', 'Color', colour, 'MarkerSize', 12);
+    sp(i) = semilogx(results{i}, iters{i}, '.', 'Color', colour, 'MarkerSize', 12);
     hold on
 end
 
@@ -61,7 +58,7 @@ sp = zeros(size(sigs_to_plot, 2), 1);
 % count = 0;
 % colour = {[rand; rand; rand]};  
 results = cell(size(sigs_to_plot));
-Xs = cell(size(sigs_to_plot));
+iters = cell(size(sigs_to_plot));
 
 % Iterate through all the files
 for i = 1:size(allNames, 2)
@@ -78,7 +75,7 @@ for i = 1:size(allNames, 2)
        data = X_results(:, 2)./X_results(:, 1);
        idx = find(sigs_to_plot==str2num(s{1}));
        results{idx} = [results{idx}; data];
-       Xs{idx} = [Xs{idx}; X_results(:, 3)];
+       iters{idx} = [iters{idx}; X_results(:, 3)];
    end
 end
 
@@ -87,7 +84,7 @@ figure;
 % Plot data
 for i = 1:size(sigs_to_plot, 2)
     colour = [rand; rand; rand];
-    sp(i) = semilogx(results{i}, Xs{i}, '.', 'Color', colour, 'MarkerSize', 12);
+    sp(i) = semilogx(results{i}, iters{i}, '.', 'Color', colour, 'MarkerSize', 12);
     hold on
 end
 

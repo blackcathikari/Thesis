@@ -1,4 +1,4 @@
-function kn_gauss_1c_sym_sph(ns, sigs)
+function kn_gauss_1c_sym_sph(ns, sigs, xmus)
 % Generates datasets, runs kmeans on them and save data so k/n can be
 % plotted.
 % Input: 
@@ -7,6 +7,7 @@ function kn_gauss_1c_sym_sph(ns, sigs)
 
 trials = 10;
 
+for
 for s=1:size(sigs, 2)
     for n=1:size(ns, 2)
 

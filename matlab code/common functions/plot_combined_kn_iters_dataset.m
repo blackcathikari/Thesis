@@ -1,7 +1,7 @@
-function plot_combined_kn_iters(ns_to_plot)
+function plot_combined_kn_iters_dataset(ns_to_plot)
 
 % Get filenames 
-allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\uniform unit circle\results\');
+allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\kn datasets\results\');
 allNames = {allFiles(~[allFiles.isdir]).name};
 allNames = sort(allNames);
 
@@ -16,7 +16,7 @@ Xs = cell(size(ns_to_plot));
 % Iterate through all the files
 for i = 1:size(allNames, 2)
    temp = strsplit(allNames{i});
-   n = temp(2);
+   n = temp(3);
    
    % Check file matches search values
    if(any(ns_to_plot == str2num(n{1}))) 
@@ -42,7 +42,7 @@ for i = 1:size(ns_to_plot, 2)
 end
 
 % Add title, labels and legend
-title('Gaussian comparison by n');
+title('Dataset comparison by n');
 xlabel('k/n');
 ylabel('iters');
 legend(n_names); 
