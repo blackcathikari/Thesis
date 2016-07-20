@@ -1,4 +1,7 @@
 function plot_combined_kn_iters_gauss_2c(ns_to_plot, sigs_to_plot, mus_to_plot)
+% ns = [100, 500, 1000, 5000, 10000];
+% sigs = [1, 5, 10, 50, 100];
+% mus = [0, 2, 5, 10, 15, 20];
 
 % Get filenames 
 allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\gaussian 2c\results\');
@@ -64,45 +67,40 @@ figure;
 
 % Plot data
 for i = 1:size(ns_to_plot, 2)
-    colour = [rand; rand; rand];
-    semilogx(n_results{i}, n_iters{i}, '.', 'Color', colour, 'MarkerSize', 8);
+    subplot(2, 3, i);
+    semilogx(n_results{i}, n_iters{i}, '.', 'MarkerSize', 8);
+    % Add title, labels and legend
+    title(strcat('Gaussian comparison by n', {' '}, num2str(ns_to_plot(i))));
+    xlabel('k/n');
+    ylabel('iters');
     hold on
 end
-
-% Add title, labels and legend
-title('Gaussian comparison by n');
-xlabel('k/n');
-ylabel('iters');
-legend(n_names); 
 
 figure;
 
 % Plot data
 for i = 1:size(sigs_to_plot, 2)
-    colour = [rand; rand; rand];
-    semilogx(s_results{i}, s_iters{i}, '.', 'Color', colour, 'MarkerSize', 8);
+    subplot(2, 3, i);
+    semilogx(s_results{i}, s_iters{i}, '.', 'MarkerSize', 8);
+    % Add title, labels and legend
+    title(strcat('Gaussian comparison by s', {' '}, num2str(sigs_to_plot(i))));
+    xlabel('k/n');
+    ylabel('iters');
     hold on
 end
-
-% Add title, labels and legend
-title('Gaussian comparison by sigma');
-xlabel('k/n');
-ylabel('iters');
-legend(s_names);
 
 figure;
 
 % Plot data
 for i = 1:size(mus_to_plot, 2)
     colour = [rand; rand; rand];
-    semilogx(m_results{i}, m_iters{i}, '.', 'Color', colour, 'MarkerSize', 8);
+    subplot(2, 3, i);
+    semilogx(m_results{i}, m_iters{i}, '.', 'MarkerSize', 8);
+    % Add title, labels and legend
+    title(strcat('Gaussian comparison by m', {' '}, num2str(mus_to_plot(i))));
+    xlabel('k/n');
+    ylabel('iters');
     hold on
 end
-
-% Add title, labels and legend
-title('Gaussian comparison by mu');
-xlabel('k/n');
-ylabel('iters');
-legend(m_names);
 
 end
