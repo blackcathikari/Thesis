@@ -1,4 +1,4 @@
-function kn_gauss_2c_sym_sph(ns, sigs, xmus)
+function kn_gauss_3c_sym_sph(ns, sigs, rs)
 % Generates datasets, runs kmeans on them and save data so k/n can be
 % plotted.
 % Input: 
@@ -7,7 +7,7 @@ function kn_gauss_2c_sym_sph(ns, sigs, xmus)
 
 trials = 10;
 
-for m=1:size(xmus, 2)
+for r=1:size(rs, 2)
     for s=1:size(sigs, 2)
         for n=1:size(ns, 2)
 
@@ -17,13 +17,17 @@ for m=1:size(xmus, 2)
            for digits = 1:iters
               ks = [ks, [1:9]*(10^digits)];
            end
-           % Remove any ks < ns(n)
-           ks = ks(ks <= ns(n));
+           
 
            % Create data variables
-           X = mvnrnd([xmus(m),0], [sigs(s), sigs(s)], ns(n)/2);
-           X = [X; mvnrnd([0,0], [sigs(s), sigs(s)], ns(n)/2)];
-           X = X(randperm(ns(n)), :);
+           X = mvnrnd([rs(r),0], [sigs(s), sigs(s)], floor(ns(n)/3));
+           X = [X; mvnrnd([-rs(r),0], [sigs(s), sigs(s)], floor(ns(n)/3))];
+           pt = (rs(r)*2)*cos(pi/6);
+           X = [X; mvnrnd([0, pt], [sigs(s), sigs(s)], floor(ns(n)/3))];
+           X = X(randperm(size(X, 1)), :);
+           
+           % Remove any ks > size(X)
+           ks = ks(ks <= size(X, 1));
            
            num_ks = size(ks, 2)*trials;
            X_results = zeros(num_ks, 4);
@@ -39,10 +43,10 @@ for m=1:size(xmus, 2)
            end
 
            %Save the data
-           filename = strjoin(strcat('G2cSS results', {' '}, num2str(ns(n)), {' '}, num2str(sigs(s)), {' '}, num2str(xmus(m)), {' '}, num2str(now)));
+           filename = strjoin(strcat('G3cSS results', {' '}, num2str(ns(n)), {' '}, num2str(sigs(s)), {' '}, num2str(rs(r)), {' '}, num2str(now)));
            save(filename, 'X_results');
            
-           filename = strjoin(strcat('G2cSS X', {' '}, num2str(ns(n)), {' '}, num2str(sigs(s)), {' '}, num2str(xmus(m)), {' '}, num2str(now)));
+           filename = strjoin(strcat('G3cSS X', {' '}, num2str(ns(n)), {' '}, num2str(sigs(s)), {' '}, num2str(rs(r)), {' '}, num2str(now)));
            save(filename, 'X');
 
 

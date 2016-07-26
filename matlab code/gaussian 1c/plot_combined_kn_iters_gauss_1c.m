@@ -1,7 +1,7 @@
-function plot_combined_kn_iters_gauss(ns_to_plot, sigs_to_plot)
+function plot_combined_kn_iters_gauss_1c(ns_to_plot, sigs_to_plot)
 
 % Get filenames 
-allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\gaussian single\results\');
+allFiles = dir('C:\Users\Millie\OneDrive\Uni\4_1\Thesis 1\Thesis\matlab code\gaussian 1c\results\');
 allNames = {allFiles(~[allFiles.isdir]).name};
 allNames = sort(allNames);
 
@@ -83,15 +83,13 @@ figure;
 
 % Plot data
 for i = 1:size(sigs_to_plot, 2)
-    colour = [rand; rand; rand];
-    sp(i) = semilogx(results{i}, iters{i}, '.', 'Color', colour, 'MarkerSize', 12);
+    subplot(2, ceil(size(sigs_to_plot, 2)/2), i);
+    sp(i) = semilogx(results{i}, iters{i}, '.', 'MarkerSize', 5);
+    % Add title, labels and legend
+    title(strcat('Gaussian comparison by sigma ', {' '}, num2str(sigs_to_plot(i))));
+    xlabel('k/n');
+    ylabel('iters');
     hold on
 end
-
-% Add title, labels and legend
-title('Gaussian comparison by sigma');
-xlabel('k/n');
-ylabel('iters');
-legend(s_names);
 
 end
